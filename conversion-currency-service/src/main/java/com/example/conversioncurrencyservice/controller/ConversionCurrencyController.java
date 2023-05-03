@@ -17,8 +17,13 @@ public class ConversionCurrencyController {
     @Autowired
     private ConversionCurrencyService conversionCurrencyService;
 
-    @GetMapping("/from/{from}/to/{to}/quantity/{quantity}/conversionMultiple/{conversionMultiple}")
-    public ConversionCurrency calculateCurrencyConversion(@PathVariable String from , @PathVariable String to , @PathVariable BigDecimal quantity , @PathVariable BigDecimal conversionMultiple){
-        return  conversionCurrencyService.calculateCurrencyConversion(from, to, quantity, conversionMultiple);
+    @GetMapping("/from/{from}/to/{to}/quantity/{quantity}")
+    public ConversionCurrency calculateCurrencyConversion(@PathVariable String from , @PathVariable String to , @PathVariable BigDecimal quantity ){
+        return  conversionCurrencyService.calculateCurrencyConversion(from, to, quantity);
+    }
+
+    @GetMapping("feign/from/{from}/to/{to}/quantity/{quantity}")
+    public ConversionCurrency calculateCurrencyConversionFeign(@PathVariable String from , @PathVariable String to , @PathVariable BigDecimal quantity ){
+        return  conversionCurrencyService.calculateCurrencyConversionFeign(from, to, quantity);
     }
 }
